@@ -50,7 +50,16 @@ export class AppComponent {
 registrarContacto(): void{
 this.contactoService.registrarContacto(this.contactoForm.value).subscribe(
   (result:any)=>{
+// Se tiene que llamar a getContactos después de que el registro sea exitoso
+  this.getContactos();
+  console.log('Llamando a getcontactos');
 
+// Swal.fire({
+//         icon: 'success',
+//        title: 'Éxito...',
+//        text: 'Contacto registrado correctamente!',
+//      });
+    
   },(err:any)=>{
     Swal.close();
     Swal.fire({
@@ -59,8 +68,8 @@ this.contactoService.registrarContacto(this.contactoForm.value).subscribe(
       text: 'Ha ocurrido un error al registrar!',
     });
   });
-  console.log('Llamando a getcontactos');
-  this.getContactos();
+  
+  
 
 }
 }
